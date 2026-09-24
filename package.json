@@ -1,0 +1,14 @@
+{
+  "name": "webforge",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22.5.0" },
+  "bin": { "webforge": "./webforge.mjs" },
+  "scripts": {
+    "test": "node --test --test-concurrency=1",
+    "webforge": "node webforge.mjs",
+    "mcp": "node webforge.mjs mcp",
+    "doctor": "node webforge.mjs doctor"
+  }
+}
