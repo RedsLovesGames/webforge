@@ -1,0 +1,37 @@
+name: Materialize verified WebForge bundle
+on:
+  push:
+    branches:
+      - feature/deep-source-adapters
+permissions:
+  contents: write
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Materialize verified implementation
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ ! -d _upload ]; then
+            echo "No staged bundle; nothing to materialize."
+            exit 0
+          fi
+          cat _upload/chunk-* > /tmp/webforge.b64
+          echo "4dfc1b94d69c41f37b41cfc6eb0e7fcf70affb8010eca3b98c8e0a303782273d  /tmp/webforge.b64" | sha256sum -c -
+          base64 -d /tmp/webforge.b64 > /tmp/webforge.tar.gz
+          echo "108ca562b7af3ec90246383789be1e402512fa3ff140f2ab337e8cbd35bca06a  /tmp/webforge.tar.gz" | sha256sum -c -
+          tar -xzf /tmp/webforge.tar.gz
+          rm -rf _upload
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          git commit -m "feat: implement deep source adapters"
+          git push origin HEAD:feature/deep-source-adapters
