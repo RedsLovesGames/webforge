@@ -2,5 +2,5 @@
   "name":"webforge","version":"0.2.0","private":true,"type":"module",
   "engines":{"node":">=22.5.0"},
   "bin":{"webforge":"./webforge.mjs"},
-  "scripts":{"test":"node --test --test-concurrency=1","doctor":"node webforge.mjs doctor"}
+  "scripts":{"test":"node --test --test-concurrency=1","doctor":"node webforge.mjs doctor","chatgpt:index":"node scripts/build-chatgpt-index.mjs"}
 }

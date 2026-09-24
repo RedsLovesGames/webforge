@@ -1,0 +1,73 @@
+name: Refresh ChatGPT WebForge index
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 8 * * 1,4'
+  push:
+    branches: [main]
+    paths:
+      - sources.json
+      - registry/sources/**
+      - scripts/build-chatgpt-index.mjs
+      - CHATGPT.md
+
+permissions:
+  contents: write
+
+concurrency:
+  group: webforge-chatgpt-index
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    if: github.event_name != 'push' || github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Refresh provider snapshots when needed
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          NEED_BOOTSTRAP=0
+          if [[ "$EVENT_NAME" == "schedule" || "$EVENT_NAME" == "workflow_dispatch" ]]; then
+            NEED_BOOTSTRAP=1
+          elif [[ ! -d registry/sources ]] || ! find registry/sources -name '*.jsonl' -print -quit 2>/dev/null | grep -q .; then
+            NEED_BOOTSTRAP=1
+          fi
+          if [[ "$NEED_BOOTSTRAP" == "1" ]]; then
+            node webforge.mjs init
+            node webforge.mjs bootstrap --concurrency 4
+          else
+            echo "Provider snapshots already exist; skipping network refresh for this push."
+          fi
+      - name: Build ChatGPT index
+        run: npm run chatgpt:index
+      - name: Verify
+        run: |
+          npm test
+          node webforge.mjs audit
+          node webforge.mjs doctor
+      - name: Commit refreshed metadata
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A -- chatgpt/INDEX.min.json chatgpt/shards
+          if [[ -d registry/sources ]]; then
+            git add -A -- registry/sources
+          fi
+          if git diff --cached --quiet; then
+            echo "WebForge ChatGPT index already current."
+            exit 0
+          fi
+          git commit -m "chore: refresh ChatGPT WebForge index"
+          git push origin HEAD:main
