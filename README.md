@@ -1,25 +1,31 @@
 # WebForge
 
-WebForge is a token-light local registry and retrieval layer for AI-assisted web design. It keeps large component/reference catalogs out of agent context, indexes them in SQLite FTS5, and exposes only the few relevant results through a CLI or MCP server.
+WebForge is a token-light local retrieval layer for AI-assisted web design. It turns component registries, motion libraries, design-reference sources, discovery directories, and capability catalogs into one searchable interface without putting the whole ecosystem into an agent's context window.
 
-## What v0.1 does
+## v0.2 deep-provider architecture
 
-- Seeds a catalog of the UI, motion, reference, prompt, media, and developer-tool sources collected for this project.
-- Adds new sources without changing program code.
-- Syncs normal websites as metadata/reference records.
-- Ingests shadcn-style or JSON registries when you explicitly configure their JSON endpoint.
-- Keeps source code out of the registry unless code ingestion is explicitly enabled.
-- Compiles JSONL registry records into a local SQLite FTS5 search index.
-- Searches by text, type, and source without loading the full registry into an AI context window.
-- Retrieves a full selected asset only when needed.
-- Safely installs cached component files into another project with path-traversal protection.
-- Optionally installs declared npm dependencies.
-- Audits duplicate IDs, missing license metadata, malformed JSONL, and unsafe file paths.
-- Runs as a lightweight stdio MCP server with search/get/install/sync/audit tools.
+WebForge keeps **local search primary**. Durable normalized records live in `registry/sources/*.jsonl`; a derived SQLite FTS5 index lives under `.webforge/`. MCP and CLI search return only compact candidate records. Full component metadata, file bodies, or DESIGN.md content are retrieved only after a specific item is selected.
+
+Deep providers are isolated under `src/adapters/` rather than hard-coded into the registry core.
+
+### Deep integrations
+
+- **shadcn-compatible registries**: normalized item metadata and shadcn installation addresses.
+- **Magic UI**: component discovery from its component sitemap, installed through `@magicui/<name>` using the shadcn CLI.
+- **Watermelon UI**: catalog discovery from its public sitemap, installed through `https://registry.watermelon.sh/r/<name>.json`.
+- **Motion Primitives**: component discovery from its docs sitemap and command installation through `npx motion-primitives@latest add <name>`.
+- **21st.dev**: optional remote provider. Remote search is opt-in and can delegate to the 21st CLI when configured/authenticated.
+- **Deck.gallery**: catalog adapter for its public deck/product JSON catalogs; public metadata only.
+- **Refero / DESIGN.md-style sources**: compact design search with explicit full design retrieval.
+- **VibeIndex**: discovery source that creates a review queue. Discovered URLs never become trusted/code-ingest sources automatically.
+
+The catalog also includes Base UI, Radix UI, React Aria, Headless UI, daisyUI, Flowbite, Preline, HeroUI, HyperUI, Lucide, Iconify, Fontsource, React Three Fiber/Drei, Recharts, ECharts, Visx, TanStack Table, and the original WebForge sources as reference/capability providers.
 
 ## Requirements
 
-- Node.js 22.5 or newer. WebForge v0.1 intentionally uses Node's built-in SQLite support so the core has no npm runtime dependencies.
+- Node.js 22.5+
+- No mandatory npm runtime dependencies for WebForge core.
+- Network access is only needed when syncing or using a remote provider.
 
 ## Start
 
@@ -29,68 +35,149 @@ node webforge.mjs init
 node webforge.mjs doctor
 ```
 
-The repository already includes `sources.json`, so `init` mostly creates the local `.webforge/` state directory and SQLite index.
+## Local search
 
-## Search
-
-```bash
-node webforge.mjs search "dark animated hero" --limit 5
-node webforge.mjs search "dashboard" --type block --source my-registry
-node webforge.mjs get my-registry/analytics-card
-```
-
-A normal source such as Godly, Refero, or a gallery is stored as a compact reference record. It is useful for retrieval without copying the site's code or assets.
-
-## Add a source
-
-Metadata/reference source:
+Local search is deterministic, fast, and credential-free:
 
 ```bash
-node webforge.mjs source add https://example.com/ui --id example-ui --adapter reference
-node webforge.mjs source sync example-ui
+node webforge.mjs search "animated hero" --limit 5
+node webforge.mjs search "dashboard" --type block --source watermelon
+node webforge.mjs search "chart" --installable --framework react
 ```
 
-Auto-detected JSON/reference source:
+Useful filters include:
+
+```text
+--type
+--source
+--license
+--installable
+--category
+--framework
+--limit
+```
+
+Retrieve a selected item only after search:
 
 ```bash
-node webforge.mjs source add https://example.com/catalog.json --id example --adapter auto
-node webforge.mjs source sync example
+node webforge.mjs get magicui/dock
 ```
 
-Explicit shadcn/registry JSON with source-code caching:
+## Source sync
 
-```bash
-node webforge.mjs source add https://example.com/registry.json \
-  --id example-registry \
-  --adapter shadcn \
-  --code \
-  --license MIT
-node webforge.mjs source sync example-registry
-```
-
-Use `--code` only when the source license/terms permit the intended use. Public availability is not treated as permission to mirror source code.
-
-## Sync everything
+Sync all enabled providers:
 
 ```bash
 node webforge.mjs source sync --concurrency 4
 ```
 
-or initialize and sync in one command:
+Sync one provider:
 
 ```bash
-node webforge.mjs bootstrap --concurrency 4
+node webforge.mjs source sync magicui
+node webforge.mjs source sync watermelon
+node webforge.mjs source sync motion-primitives
 ```
 
-A failed site does not erase its last successful registry file. The sync report identifies failures, then the index is rebuilt from the usable local records.
+Provider failures are isolated. A failed sync does not replace the provider's previous successful JSONL snapshot.
 
-## Install an asset
+HTTP metadata is cached under:
+
+```text
+.webforge/cache/providers/
+```
+
+ETag and Last-Modified values are used when available.
+
+## Provider status and probing
 
 ```bash
-node webforge.mjs install example-registry/hero-glow --project ../my-site
+node webforge.mjs provider status
+node webforge.mjs provider status motion-primitives
+node webforge.mjs source probe magicui
 ```
 
-By default WebForge writes cached files and, when a `package.json` exists, installs declared npm dependencies. Disable dependency installation with `--no-deps`. Existing files are protected unless `--force` is supplied.
+Optional tools can report `unavailable` without breaking WebForge local search.
+
+## Installation
+
+WebForge chooses an installation strategy from the selected item:
+
+- `cached-files`: write WebForge-owned/explicitly cached files with path and overwrite protection.
+- `shadcn`: delegate to `npx shadcn@latest add <address>`.
+- `command`: run a provider executable with an argument array.
+- `remote`: delegate to an authenticated remote provider.
+- `none`: reference-only item.
+
+Example:
+
+```bash
+node webforge.mjs install magicui/dock --project ../my-site
+node webforge.mjs install watermelon/hero-12 --project ../my-site
+node webforge.mjs install motion-primitives/text-effect --project ../my-site
+```
+
+Command strategies never construct shell strings from item IDs. User-controlled item names remain literal arguments.
+
+## 21st remote search
+
+Normal `webforge search` never fans out remotely.
+
+To opt in:
+
+```bash
+node webforge.mjs search "pricing table" --remote --limit 5
+```
+
+The configured 21st provider uses `API_KEY_21ST` when present and delegates to the 21st CLI. Secrets are not persisted into `sources.json`, registry JSONL, or SQLite.
+
+If auth or the optional provider CLI is unavailable, WebForge returns a provider status rather than breaking local results.
+
+## Design retrieval
+
+```bash
+node webforge.mjs design search "minimal dark dashboard"
+node webforge.mjs design get refero-styles/example-style
+```
+
+Search results deliberately exclude large DESIGN.md bodies. `design get` returns the complete selected record, including DESIGN.md text when the provider explicitly made it available.
+
+## Source discovery
+
+VibeIndex and future discovery providers feed a review queue:
+
+```bash
+node webforge.mjs discover --source vibeindex
+node webforge.mjs discover list
+node webforge.mjs discover approve <candidate-id>
+```
+
+Approval creates a conservative source with code ingestion disabled. Discovery never grants code or media ingestion permission automatically.
+
+## Add your own source
+
+Reference source:
+
+```bash
+node webforge.mjs source add https://example.com --id example --adapter reference
+```
+
+Generic JSON catalog:
+
+```bash
+node webforge.mjs source add https://example.com/catalog.json --id example --adapter catalog-json
+```
+
+shadcn registry:
+
+```bash
+node webforge.mjs source add https://example.com/registry.json \
+  --id example-registry \
+  --adapter shadcn \
+  --manifest https://example.com/registry.json
+```
+
+Code ingestion remains off unless explicitly enabled and permitted by the source's licensing/policy.
 
 ## MCP
 
@@ -100,52 +187,46 @@ Start the stdio server:
 node /absolute/path/to/webforge/webforge.mjs mcp --root /absolute/path/to/webforge
 ```
 
-The server exposes:
-
-- `webforge_search`
-- `webforge_get`
-- `webforge_install`
-- `webforge_sources`
-- `webforge_sync`
-- `webforge_audit`
-
-The search-first workflow is intentional. An agent can query tens of thousands of indexed assets while receiving only a handful of compact records, then retrieve the selected item.
-
-### Example MCP request sequence
+Tools:
 
 ```text
-webforge_search({ query: "minimal pricing section", limit: 5 })
-webforge_get({ id: "source/chosen-item" })
-webforge_install({ id: "source/chosen-item", projectRoot: "/project" })
+webforge_search
+webforge_get
+webforge_install
+webforge_sources
+webforge_sync
+webforge_audit
+webforge_provider_status
+webforge_search_remote
+webforge_design_search
+webforge_design_get
+webforge_discover
 ```
 
-## Registry model
+Recommended agent flow:
 
-On disk, source records live in `registry/sources/*.jsonl`. SQLite is a derived cache and is ignored by Git.
-
-A normalized record is intentionally compact:
-
-```json
-{
-  "id": "source/hero-glow",
-  "title": "Hero Glow",
-  "type": "block",
-  "source": { "id": "source", "url": "https://example.com" },
-  "tags": ["hero", "motion"],
-  "dependencies": ["motion"],
-  "registryDependencies": [],
-  "files": [{ "path": "components/hero-glow.tsx", "content": "..." }],
-  "license": { "id": "MIT" }
-}
+```text
+webforge_search(query, limit=5)
+        ↓
+select candidate
+        ↓
+webforge_get(id)
+        ↓
+webforge_install(id, projectRoot)
 ```
 
-## Why the seeded sources are reference-only
+Use `webforge_search_remote` only when the local registry does not contain sufficient candidates.
 
-The seed catalog mixes open-source libraries, inspiration galleries, generators, commercial/freemium products, and tools. WebForge therefore begins conservatively: it indexes their metadata, not their source code. Sources with verified reusable registries can be reconfigured with an explicit registry endpoint and `--code`.
+## Licensing and trust
 
-This separation is what lets the catalog scale without turning the repo into a licensing, duplication, and token-cost problem.
+`license` and `policy` are separate concepts:
 
-## Tests and checks
+- `license`: known license metadata.
+- `policy`: what WebForge is allowed to ingest/cache.
+
+A publicly reachable page is not treated as permission to mirror source code. Unknown-license assets stay metadata/reference-first and are reported by `audit`.
+
+## Verification
 
 ```bash
 npm test
@@ -153,8 +234,4 @@ node webforge.mjs audit
 node webforge.mjs doctor
 ```
 
-`node:sqlite` may emit an ExperimentalWarning on some Node 22 releases. That warning does not indicate a failed test or query.
-
-## Next upgrades
-
-The intended next layer is source-specific adapters for high-value registries, design-token normalization through project `DESIGN.md`, canonical component promotion, visual-reference embeddings, and optional Agent Memory integration. The v0.1 core is deliberately smaller so those features can reuse one stable search/install interface instead of creating separate workflows per website.
+The deterministic test suite does not depend on third-party uptime, external credentials, or live provider APIs.
