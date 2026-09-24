@@ -1,0 +1,462 @@
+[
+  {
+    "id": "shadcn",
+    "name": "shadcn/ui",
+    "url": "https://ui.shadcn.com",
+    "adapter": "reference",
+    "enabled": true,
+    "allowCodeIngest": false,
+    "tags": ["components", "design-system", "react", "tailwind"],
+    "license": null
+  },
+  {
+    "id": "21st",
+    "name": "21st.dev",
+    "url": "https://21st.dev",
+    "adapter": "reference",
+    "enabled": true,
+    "allowCodeIngest": false,
+    "tags": ["components", "registry", "react", "ai"],
+    "license": null
+  },
+  {
+    "id": "magicui",
+    "name": "Magic UI",
+    "url": "https://magicui.design",
+    "adapter": "reference",
+    "enabled": true,
+    "allowCodeIngest": false,
+    "tags": ["components", "animation", "react", "marketing"],
+    "license": null
+  },
+  {
+    "id": "aceternity",
+    "name": "Aceternity UI",
+    "url": "https://ui.aceternity.com/components",
+    "adapter": "reference",
+    "enabled": true,
+    "allowCodeIngest": false,
+    "tags": ["components", "animation", "react", "tailwind"],
+    "license": null
+  },
+  {
+    "id": "open-props",
+    "name": "Open Props",
+    "url": "https://open-props.style",
+    "adapter": "reference",
+    "enabled": true,
+    "allowCodeIngest": false,
+    "tags": ["css", "tokens", "design-system"],
+    "license": null
+  },
+  {
+    "id": "obsidianui",
+    "name": "Obsidian UI",
+    "url": "https://www.obsidianui.dev/components",
+    "adapter": "reference",
+    "enabled": true,
+    "allowCodeIngest": false,
+    "tags": ["components", "react"],
+    "license": null
+  },
+  {
+    "id": "rewampui",
+    "name": "Rewamp UI",
+    "url": "https://www.rewampui.com/components",
+    "adapter": "reference",
+    "enabled": true,
+    "allowCodeIngest": false,
+    "tags": ["components", "react"],
+    "license": null
+  },
+  {
+    "id": "watermelon",
+    "name": "Watermelon UI",
+    "url": "http://ui.watermelon.sh",
+    "adapter": "reference",
+    "enabled": true,
+    "allowCodeIngest": false,
+    "tags": ["components", "blocks", "shadcn"],
+    "license": null
+  },
+  {
+    "id": "motion-primitives",
+    "name": "Motion Primitives",
+    "url": "https://motion-primitives.com",
+    "adapter": "reference",
+    "enabled": true,
+    "allowCodeIngest": false,
+    "tags": ["motion", "react", "components"],
+    "license": null
+  },
+  {
+    "id": "transitions",
+    "name": "Transitions.dev",
+    "url": "https://transitions.dev",
+    "adapter": "reference",
+    "enabled": true,
+    "allowCodeIngest": false,
+    "tags": ["motion", "transitions", "react"],
+    "license": null
+  },
+  {
+    "id": "uiverse",
+    "name": "Uiverse",
+    "url": "https://uiverse.io",
+    "adapter": "reference",
+    "enabled": true,
+    "allowCodeIngest": false,
+    "tags": ["components", "css", "react"],
+    "license": null
+  },
+  {
+    "id": "uiable",
+    "name": "UIAble",
+    "url": "https://uiable.com",
+    "adapter": "reference",
+    "enabled": true,
+    "allowCodeIngest": false,
+    "tags": ["components", "shadcn", "react"],
+    "license": null
+  },
+  {
+    "id": "mapcn",
+    "name": "mapcn",
+    "url": "https://mapcn.dev",
+    "adapter": "reference",
+    "enabled": true,
+    "allowCodeIngest": false,
+    "tags": ["maps", "components", "react"],
+    "license": null
+  },
+  {
+    "id": "microkit",
+    "name": "MicroKit UI",
+    "url": "https://microkit.co",
+    "adapter": "reference",
+    "enabled": true,
+    "allowCodeIngest": false,
+    "tags": ["microinteractions", "components"],
+    "license": null
+  },
+  {
+    "id": "kinetics",
+    "name": "Kinetics",
+    "url": "https://kinetics.colorion.co",
+    "adapter": "reference",
+    "enabled": true,
+    "allowCodeIngest": false,
+    "tags": ["motion", "css", "react", "prompts"],
+    "license": null
+  },
+  {
+    "id": "animejs",
+    "name": "Anime.js",
+    "url": "https://animejs.com",
+    "adapter": "reference",
+    "enabled": true,
+    "allowCodeIngest": false,
+    "tags": ["animation", "javascript", "library"],
+    "license": null
+  },
+  {
+    "id": "liquid-glass",
+    "name": "Liquid Glass",
+    "url": "https://glass.samasante.com",
+    "adapter": "reference",
+    "enabled": true,
+    "allowCodeIngest": false,
+    "tags": ["glass", "react", "components"],
+    "license": null
+  },
+  {
+    "id": "text-effects",
+    "name": "CSS Text Effects",
+    "url": "https://text-effects.colorion.co",
+    "adapter": "reference",
+    "enabled": true,
+    "allowCodeIngest": false,
+    "tags": ["css", "text", "motion"],
+    "license": null
+  },
+  {
+    "id": "circle-loaders",
+    "name": "Circle Loaders",
+    "url": "https://circleloaders.dominikakissi.com",
+    "adapter": "reference",
+    "enabled": true,
+    "allowCodeIngest": false,
+    "tags": ["svg", "loaders"],
+    "license": null
+  },
+  {
+    "id": "gradient-buttons",
+    "name": "Gradient Buttons",
+    "url": "https://gradientbuttons.colorion.co",
+    "adapter": "reference",
+    "enabled": true,
+    "allowCodeIngest": false,
+    "tags": ["css", "buttons"],
+    "license": null
+  },
+  {
+    "id": "kitbitz",
+    "name": "Kitbitz",
+    "url": "https://kitbitz.art",
+    "adapter": "reference",
+    "enabled": true,
+    "allowCodeIngest": false,
+    "tags": ["illustrations", "assets"],
+    "license": null
+  },
+  {
+    "id": "3dicons",
+    "name": "3Dicons",
+    "url": "https://3dicons.co",
+    "adapter": "reference",
+    "enabled": true,
+    "allowCodeIngest": false,
+    "tags": ["icons", "3d", "assets"],
+    "license": null
+  },
+  {
+    "id": "deck-gallery",
+    "name": "Deck.gallery",
+    "url": "https://deck.gallery",
+    "adapter": "reference",
+    "enabled": true,
+    "allowCodeIngest": false,
+    "tags": ["reference", "presentations", "design"],
+    "license": null
+  },
+  {
+    "id": "godly",
+    "name": "Godly",
+    "url": "https://godly.design",
+    "adapter": "reference",
+    "enabled": true,
+    "allowCodeIngest": false,
+    "tags": ["reference", "websites", "design"],
+    "license": null
+  },
+  {
+    "id": "minimal-gallery",
+    "name": "Minimal Gallery",
+    "url": "https://minimal.gallery",
+    "adapter": "reference",
+    "enabled": true,
+    "allowCodeIngest": false,
+    "tags": ["reference", "websites", "minimal"],
+    "license": null
+  },
+  {
+    "id": "component-gallery",
+    "name": "Component Gallery",
+    "url": "https://component.gallery",
+    "adapter": "reference",
+    "enabled": true,
+    "allowCodeIngest": false,
+    "tags": ["reference", "components", "design-systems"],
+    "license": null
+  },
+  {
+    "id": "appshot",
+    "name": "AppShot Gallery",
+    "url": "https://appshot.gallery",
+    "adapter": "reference",
+    "enabled": true,
+    "allowCodeIngest": false,
+    "tags": ["reference", "mobile", "ui"],
+    "license": null
+  },
+  {
+    "id": "navbar-gallery",
+    "name": "Navbar Gallery",
+    "url": "https://navbar.gallery",
+    "adapter": "reference",
+    "enabled": true,
+    "allowCodeIngest": false,
+    "tags": ["reference", "navbar"],
+    "license": null
+  },
+  {
+    "id": "footer-design",
+    "name": "Footer Design",
+    "url": "https://footer.design",
+    "adapter": "reference",
+    "enabled": true,
+    "allowCodeIngest": false,
+    "tags": ["reference", "footer"],
+    "license": null
+  },
+  {
+    "id": "cta-gallery",
+    "name": "CTA Gallery",
+    "url": "https://cta.gallery",
+    "adapter": "reference",
+    "enabled": true,
+    "allowCodeIngest": false,
+    "tags": ["reference", "cta", "conversion"],
+    "license": null
+  },
+  {
+    "id": "404s",
+    "name": "404s.design",
+    "url": "https://404s.design",
+    "adapter": "reference",
+    "enabled": true,
+    "allowCodeIngest": false,
+    "tags": ["reference", "404"],
+    "license": null
+  },
+  {
+    "id": "refero-styles",
+    "name": "Refero Styles",
+    "url": "https://styles.refero.design",
+    "adapter": "reference",
+    "enabled": true,
+    "allowCodeIngest": false,
+    "tags": ["styles", "designmd", "reference"],
+    "license": null
+  },
+  {
+    "id": "designmd",
+    "name": "DESIGNmd",
+    "url": "https://designmd.ai",
+    "adapter": "reference",
+    "enabled": true,
+    "allowCodeIngest": false,
+    "tags": ["designmd", "styles", "agents"],
+    "license": null
+  },
+  {
+    "id": "kage",
+    "name": "Kage",
+    "url": "https://kage.design",
+    "adapter": "reference",
+    "enabled": true,
+    "allowCodeIngest": false,
+    "tags": ["reference", "prompts", "ui"],
+    "license": null
+  },
+  {
+    "id": "vibeui",
+    "name": "VibeUI",
+    "url": "https://vibeui.online",
+    "adapter": "reference",
+    "enabled": true,
+    "allowCodeIngest": false,
+    "tags": ["prompts", "layouts", "patterns"],
+    "license": null
+  },
+  {
+    "id": "vibeprompts",
+    "name": "VibePrompt",
+    "url": "https://vibeprompts.dev",
+    "adapter": "reference",
+    "enabled": true,
+    "allowCodeIngest": false,
+    "tags": ["prompts", "ui"],
+    "license": null
+  },
+  {
+    "id": "scrolltide",
+    "name": "Scrolltide",
+    "url": "https://scrolltide.co",
+    "adapter": "reference",
+    "enabled": true,
+    "allowCodeIngest": false,
+    "tags": ["prompts", "scrollytelling", "3d"],
+    "license": null
+  },
+  {
+    "id": "backgrounds",
+    "name": "Backgrounds Supply",
+    "url": "https://backgrounds.supply",
+    "adapter": "reference",
+    "enabled": true,
+    "allowCodeIngest": false,
+    "tags": ["backgrounds", "media", "assets"],
+    "license": null
+  },
+  {
+    "id": "animos",
+    "name": "Animos",
+    "url": "https://animos.app",
+    "adapter": "reference",
+    "enabled": true,
+    "allowCodeIngest": false,
+    "tags": ["motion", "video", "tool"],
+    "license": null
+  },
+  {
+    "id": "openmotion",
+    "name": "OpenMotion",
+    "url": "https://openmotion.design",
+    "adapter": "reference",
+    "enabled": true,
+    "allowCodeIngest": false,
+    "tags": ["motion", "product-demo", "tool"],
+    "license": null
+  },
+  {
+    "id": "iconcreator",
+    "name": "IconCreator",
+    "url": "http://iconcreator.dev",
+    "adapter": "reference",
+    "enabled": true,
+    "allowCodeIngest": false,
+    "tags": ["icons", "generator", "tool"],
+    "license": null
+  },
+  {
+    "id": "voicestudio",
+    "name": "VoiceStudio",
+    "url": "http://voicestudio.sh",
+    "adapter": "reference",
+    "enabled": true,
+    "allowCodeIngest": false,
+    "tags": ["voice", "audio", "tool"],
+    "license": null
+  },
+  {
+    "id": "maildev",
+    "name": "MailDev",
+    "url": "http://maildev.github.io/maildev",
+    "adapter": "reference",
+    "enabled": true,
+    "allowCodeIngest": false,
+    "tags": ["email", "testing", "developer-tool"],
+    "license": null
+  },
+  {
+    "id": "agent-memory",
+    "name": "Agent Memory",
+    "url": "http://agent-memory.dev",
+    "adapter": "reference",
+    "enabled": true,
+    "allowCodeIngest": false,
+    "tags": ["agent", "memory", "developer-tool"],
+    "license": null
+  },
+  {
+    "id": "vibeindex",
+    "name": "VibeIndex",
+    "url": "https://vibeindex.dev",
+    "adapter": "reference",
+    "enabled": true,
+    "allowCodeIngest": false,
+    "tags": ["directory", "discovery", "developer-tools"],
+    "license": null
+  },
+  {
+    "id": "openclaude",
+    "name": "OpenClaude",
+    "url": "http://openclaude.gitlawb.com",
+    "adapter": "reference",
+    "enabled": true,
+    "allowCodeIngest": false,
+    "tags": ["coding-agent", "cli"],
+    "license": null
+  }
+]
