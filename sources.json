@@ -3,31 +3,89 @@
     "id": "shadcn",
     "name": "shadcn/ui",
     "url": "https://ui.shadcn.com",
-    "adapter": "reference",
+    "adapter": "shadcn",
     "enabled": true,
     "allowCodeIngest": false,
-    "tags": ["components", "design-system", "react", "tailwind"],
-    "license": null
+    "tags": [
+      "components",
+      "design-system",
+      "react",
+      "tailwind"
+    ],
+    "license": null,
+    "policy": {
+      "metadataAllowed": true,
+      "codeIngestAllowed": false,
+      "mediaIngestAllowed": false,
+      "attributionRequired": false,
+      "notes": null
+    },
+    "namespace": "shadcn",
+    "installPrefix": "",
+    "catalogUrl": "https://ui.shadcn.com/r/index.json"
   },
   {
     "id": "21st",
     "name": "21st.dev",
     "url": "https://21st.dev",
-    "adapter": "reference",
+    "adapter": "remote-provider",
     "enabled": true,
     "allowCodeIngest": false,
-    "tags": ["components", "registry", "react", "ai"],
-    "license": null
+    "tags": [
+      "components",
+      "registry",
+      "react",
+      "ai"
+    ],
+    "license": null,
+    "policy": {
+      "metadataAllowed": true,
+      "codeIngestAllowed": false,
+      "mediaIngestAllowed": false,
+      "attributionRequired": false,
+      "notes": null
+    },
+    "provider": "21st",
+    "remote": true,
+    "authEnv": "API_KEY_21ST",
+    "mcpUrl": "https://21st.dev/api/mcp",
+    "remoteCommand": {
+      "executable": "npx",
+      "args": [
+        "@21st-dev/cli@latest",
+        "search",
+        "{query}",
+        "--json"
+      ]
+    }
   },
   {
     "id": "magicui",
     "name": "Magic UI",
     "url": "https://magicui.design",
-    "adapter": "reference",
+    "adapter": "shadcn",
     "enabled": true,
     "allowCodeIngest": false,
-    "tags": ["components", "animation", "react", "marketing"],
-    "license": null
+    "tags": [
+      "components",
+      "animation",
+      "react",
+      "marketing"
+    ],
+    "license": null,
+    "policy": {
+      "metadataAllowed": true,
+      "codeIngestAllowed": false,
+      "mediaIngestAllowed": false,
+      "attributionRequired": false,
+      "notes": null
+    },
+    "namespace": "magicui",
+    "installPrefix": "@magicui/",
+    "sitemapUrl": "https://magicui.design/sitemap.xml",
+    "sitemapInclude": [
+      "/docs/components/"
+    ]
   },
   {
     "id": "aceternity",
@@ -36,8 +94,20 @@
     "adapter": "reference",
     "enabled": true,
     "allowCodeIngest": false,
-    "tags": ["components", "animation", "react", "tailwind"],
-    "license": null
+    "tags": [
+      "components",
+      "animation",
+      "react",
+      "tailwind"
+    ],
+    "license": null,
+    "policy": {
+      "metadataAllowed": true,
+      "codeIngestAllowed": false,
+      "mediaIngestAllowed": false,
+      "attributionRequired": false,
+      "notes": null
+    }
   },
   {
     "id": "open-props",
@@ -46,8 +116,19 @@
     "adapter": "reference",
     "enabled": true,
     "allowCodeIngest": false,
-    "tags": ["css", "tokens", "design-system"],
-    "license": null
+    "tags": [
+      "css",
+      "tokens",
+      "design-system"
+    ],
+    "license": null,
+    "policy": {
+      "metadataAllowed": true,
+      "codeIngestAllowed": false,
+      "mediaIngestAllowed": false,
+      "attributionRequired": false,
+      "notes": null
+    }
   },
   {
     "id": "obsidianui",
@@ -56,8 +137,18 @@
     "adapter": "reference",
     "enabled": true,
     "allowCodeIngest": false,
-    "tags": ["components", "react"],
-    "license": null
+    "tags": [
+      "components",
+      "react"
+    ],
+    "license": null,
+    "policy": {
+      "metadataAllowed": true,
+      "codeIngestAllowed": false,
+      "mediaIngestAllowed": false,
+      "attributionRequired": false,
+      "notes": null
+    }
   },
   {
     "id": "rewampui",
@@ -66,28 +157,86 @@
     "adapter": "reference",
     "enabled": true,
     "allowCodeIngest": false,
-    "tags": ["components", "react"],
-    "license": null
+    "tags": [
+      "components",
+      "react"
+    ],
+    "license": null,
+    "policy": {
+      "metadataAllowed": true,
+      "codeIngestAllowed": false,
+      "mediaIngestAllowed": false,
+      "attributionRequired": false,
+      "notes": null
+    }
   },
   {
     "id": "watermelon",
     "name": "Watermelon UI",
-    "url": "http://ui.watermelon.sh",
-    "adapter": "reference",
+    "url": "https://ui.watermelon.sh",
+    "adapter": "shadcn",
     "enabled": true,
     "allowCodeIngest": false,
-    "tags": ["components", "blocks", "shadcn"],
-    "license": null
+    "tags": [
+      "components",
+      "blocks",
+      "shadcn"
+    ],
+    "license": null,
+    "policy": {
+      "metadataAllowed": true,
+      "codeIngestAllowed": false,
+      "mediaIngestAllowed": false,
+      "attributionRequired": false,
+      "notes": null
+    },
+    "registryTemplate": "https://registry.watermelon.sh/r/{name}.json",
+    "sitemapUrl": "https://ui.watermelon.sh/sitemap.xml",
+    "sitemapInclude": [
+      "/block/",
+      "/components/",
+      "/dashboard/",
+      "/template/"
+    ]
   },
   {
     "id": "motion-primitives",
     "name": "Motion Primitives",
     "url": "https://motion-primitives.com",
-    "adapter": "reference",
+    "adapter": "command-provider",
     "enabled": true,
     "allowCodeIngest": false,
-    "tags": ["motion", "react", "components"],
-    "license": null
+    "tags": [
+      "motion",
+      "react",
+      "components"
+    ],
+    "license": null,
+    "policy": {
+      "metadataAllowed": true,
+      "codeIngestAllowed": false,
+      "mediaIngestAllowed": false,
+      "attributionRequired": false,
+      "notes": null
+    },
+    "command": {
+      "executable": "npx",
+      "args": [
+        "motion-primitives@latest",
+        "add",
+        "{item}"
+      ]
+    },
+    "dependencies": [
+      "motion",
+      "lucide-react",
+      "clsx",
+      "tailwind-merge"
+    ],
+    "sitemapUrl": "https://motion-primitives.com/sitemap.xml",
+    "sitemapInclude": [
+      "/docs/"
+    ]
   },
   {
     "id": "transitions",
@@ -96,8 +245,19 @@
     "adapter": "reference",
     "enabled": true,
     "allowCodeIngest": false,
-    "tags": ["motion", "transitions", "react"],
-    "license": null
+    "tags": [
+      "motion",
+      "transitions",
+      "react"
+    ],
+    "license": null,
+    "policy": {
+      "metadataAllowed": true,
+      "codeIngestAllowed": false,
+      "mediaIngestAllowed": false,
+      "attributionRequired": false,
+      "notes": null
+    }
   },
   {
     "id": "uiverse",
@@ -106,8 +266,19 @@
     "adapter": "reference",
     "enabled": true,
     "allowCodeIngest": false,
-    "tags": ["components", "css", "react"],
-    "license": null
+    "tags": [
+      "components",
+      "css",
+      "react"
+    ],
+    "license": null,
+    "policy": {
+      "metadataAllowed": true,
+      "codeIngestAllowed": false,
+      "mediaIngestAllowed": false,
+      "attributionRequired": false,
+      "notes": null
+    }
   },
   {
     "id": "uiable",
@@ -116,8 +287,19 @@
     "adapter": "reference",
     "enabled": true,
     "allowCodeIngest": false,
-    "tags": ["components", "shadcn", "react"],
-    "license": null
+    "tags": [
+      "components",
+      "shadcn",
+      "react"
+    ],
+    "license": null,
+    "policy": {
+      "metadataAllowed": true,
+      "codeIngestAllowed": false,
+      "mediaIngestAllowed": false,
+      "attributionRequired": false,
+      "notes": null
+    }
   },
   {
     "id": "mapcn",
@@ -126,8 +308,19 @@
     "adapter": "reference",
     "enabled": true,
     "allowCodeIngest": false,
-    "tags": ["maps", "components", "react"],
-    "license": null
+    "tags": [
+      "maps",
+      "components",
+      "react"
+    ],
+    "license": null,
+    "policy": {
+      "metadataAllowed": true,
+      "codeIngestAllowed": false,
+      "mediaIngestAllowed": false,
+      "attributionRequired": false,
+      "notes": null
+    }
   },
   {
     "id": "microkit",
@@ -136,8 +329,18 @@
     "adapter": "reference",
     "enabled": true,
     "allowCodeIngest": false,
-    "tags": ["microinteractions", "components"],
-    "license": null
+    "tags": [
+      "microinteractions",
+      "components"
+    ],
+    "license": null,
+    "policy": {
+      "metadataAllowed": true,
+      "codeIngestAllowed": false,
+      "mediaIngestAllowed": false,
+      "attributionRequired": false,
+      "notes": null
+    }
   },
   {
     "id": "kinetics",
@@ -146,8 +349,20 @@
     "adapter": "reference",
     "enabled": true,
     "allowCodeIngest": false,
-    "tags": ["motion", "css", "react", "prompts"],
-    "license": null
+    "tags": [
+      "motion",
+      "css",
+      "react",
+      "prompts"
+    ],
+    "license": null,
+    "policy": {
+      "metadataAllowed": true,
+      "codeIngestAllowed": false,
+      "mediaIngestAllowed": false,
+      "attributionRequired": false,
+      "notes": null
+    }
   },
   {
     "id": "animejs",
@@ -156,8 +371,19 @@
     "adapter": "reference",
     "enabled": true,
     "allowCodeIngest": false,
-    "tags": ["animation", "javascript", "library"],
-    "license": null
+    "tags": [
+      "animation",
+      "javascript",
+      "library"
+    ],
+    "license": null,
+    "policy": {
+      "metadataAllowed": true,
+      "codeIngestAllowed": false,
+      "mediaIngestAllowed": false,
+      "attributionRequired": false,
+      "notes": null
+    }
   },
   {
     "id": "liquid-glass",
@@ -166,8 +392,19 @@
     "adapter": "reference",
     "enabled": true,
     "allowCodeIngest": false,
-    "tags": ["glass", "react", "components"],
-    "license": null
+    "tags": [
+      "glass",
+      "react",
+      "components"
+    ],
+    "license": null,
+    "policy": {
+      "metadataAllowed": true,
+      "codeIngestAllowed": false,
+      "mediaIngestAllowed": false,
+      "attributionRequired": false,
+      "notes": null
+    }
   },
   {
     "id": "text-effects",
@@ -176,8 +413,19 @@
     "adapter": "reference",
     "enabled": true,
     "allowCodeIngest": false,
-    "tags": ["css", "text", "motion"],
-    "license": null
+    "tags": [
+      "css",
+      "text",
+      "motion"
+    ],
+    "license": null,
+    "policy": {
+      "metadataAllowed": true,
+      "codeIngestAllowed": false,
+      "mediaIngestAllowed": false,
+      "attributionRequired": false,
+      "notes": null
+    }
   },
   {
     "id": "circle-loaders",
@@ -186,8 +434,18 @@
     "adapter": "reference",
     "enabled": true,
     "allowCodeIngest": false,
-    "tags": ["svg", "loaders"],
-    "license": null
+    "tags": [
+      "svg",
+      "loaders"
+    ],
+    "license": null,
+    "policy": {
+      "metadataAllowed": true,
+      "codeIngestAllowed": false,
+      "mediaIngestAllowed": false,
+      "attributionRequired": false,
+      "notes": null
+    }
   },
   {
     "id": "gradient-buttons",
@@ -196,8 +454,18 @@
     "adapter": "reference",
     "enabled": true,
     "allowCodeIngest": false,
-    "tags": ["css", "buttons"],
-    "license": null
+    "tags": [
+      "css",
+      "buttons"
+    ],
+    "license": null,
+    "policy": {
+      "metadataAllowed": true,
+      "codeIngestAllowed": false,
+      "mediaIngestAllowed": false,
+      "attributionRequired": false,
+      "notes": null
+    }
   },
   {
     "id": "kitbitz",
@@ -206,8 +474,18 @@
     "adapter": "reference",
     "enabled": true,
     "allowCodeIngest": false,
-    "tags": ["illustrations", "assets"],
-    "license": null
+    "tags": [
+      "illustrations",
+      "assets"
+    ],
+    "license": null,
+    "policy": {
+      "metadataAllowed": true,
+      "codeIngestAllowed": false,
+      "mediaIngestAllowed": false,
+      "attributionRequired": false,
+      "notes": null
+    }
   },
   {
     "id": "3dicons",
@@ -216,18 +494,44 @@
     "adapter": "reference",
     "enabled": true,
     "allowCodeIngest": false,
-    "tags": ["icons", "3d", "assets"],
-    "license": null
+    "tags": [
+      "icons",
+      "3d",
+      "assets"
+    ],
+    "license": null,
+    "policy": {
+      "metadataAllowed": true,
+      "codeIngestAllowed": false,
+      "mediaIngestAllowed": false,
+      "attributionRequired": false,
+      "notes": null
+    }
   },
   {
     "id": "deck-gallery",
     "name": "Deck.gallery",
     "url": "https://deck.gallery",
-    "adapter": "reference",
+    "adapter": "deck-gallery",
     "enabled": true,
     "allowCodeIngest": false,
-    "tags": ["reference", "presentations", "design"],
-    "license": null
+    "tags": [
+      "reference",
+      "presentations",
+      "design"
+    ],
+    "license": null,
+    "policy": {
+      "metadataAllowed": true,
+      "codeIngestAllowed": false,
+      "mediaIngestAllowed": false,
+      "attributionRequired": false,
+      "notes": null
+    },
+    "catalog": {
+      "decks": "https://deck.gallery/api/catalog/decks.json",
+      "products": "https://deck.gallery/api/catalog/products.json"
+    }
   },
   {
     "id": "godly",
@@ -236,8 +540,19 @@
     "adapter": "reference",
     "enabled": true,
     "allowCodeIngest": false,
-    "tags": ["reference", "websites", "design"],
-    "license": null
+    "tags": [
+      "reference",
+      "websites",
+      "design"
+    ],
+    "license": null,
+    "policy": {
+      "metadataAllowed": true,
+      "codeIngestAllowed": false,
+      "mediaIngestAllowed": false,
+      "attributionRequired": false,
+      "notes": null
+    }
   },
   {
     "id": "minimal-gallery",
@@ -246,8 +561,19 @@
     "adapter": "reference",
     "enabled": true,
     "allowCodeIngest": false,
-    "tags": ["reference", "websites", "minimal"],
-    "license": null
+    "tags": [
+      "reference",
+      "websites",
+      "minimal"
+    ],
+    "license": null,
+    "policy": {
+      "metadataAllowed": true,
+      "codeIngestAllowed": false,
+      "mediaIngestAllowed": false,
+      "attributionRequired": false,
+      "notes": null
+    }
   },
   {
     "id": "component-gallery",
@@ -256,8 +582,19 @@
     "adapter": "reference",
     "enabled": true,
     "allowCodeIngest": false,
-    "tags": ["reference", "components", "design-systems"],
-    "license": null
+    "tags": [
+      "reference",
+      "components",
+      "design-systems"
+    ],
+    "license": null,
+    "policy": {
+      "metadataAllowed": true,
+      "codeIngestAllowed": false,
+      "mediaIngestAllowed": false,
+      "attributionRequired": false,
+      "notes": null
+    }
   },
   {
     "id": "appshot",
@@ -266,8 +603,19 @@
     "adapter": "reference",
     "enabled": true,
     "allowCodeIngest": false,
-    "tags": ["reference", "mobile", "ui"],
-    "license": null
+    "tags": [
+      "reference",
+      "mobile",
+      "ui"
+    ],
+    "license": null,
+    "policy": {
+      "metadataAllowed": true,
+      "codeIngestAllowed": false,
+      "mediaIngestAllowed": false,
+      "attributionRequired": false,
+      "notes": null
+    }
   },
   {
     "id": "navbar-gallery",
@@ -276,8 +624,18 @@
     "adapter": "reference",
     "enabled": true,
     "allowCodeIngest": false,
-    "tags": ["reference", "navbar"],
-    "license": null
+    "tags": [
+      "reference",
+      "navbar"
+    ],
+    "license": null,
+    "policy": {
+      "metadataAllowed": true,
+      "codeIngestAllowed": false,
+      "mediaIngestAllowed": false,
+      "attributionRequired": false,
+      "notes": null
+    }
   },
   {
     "id": "footer-design",
@@ -286,8 +644,18 @@
     "adapter": "reference",
     "enabled": true,
     "allowCodeIngest": false,
-    "tags": ["reference", "footer"],
-    "license": null
+    "tags": [
+      "reference",
+      "footer"
+    ],
+    "license": null,
+    "policy": {
+      "metadataAllowed": true,
+      "codeIngestAllowed": false,
+      "mediaIngestAllowed": false,
+      "attributionRequired": false,
+      "notes": null
+    }
   },
   {
     "id": "cta-gallery",
@@ -296,8 +664,19 @@
     "adapter": "reference",
     "enabled": true,
     "allowCodeIngest": false,
-    "tags": ["reference", "cta", "conversion"],
-    "license": null
+    "tags": [
+      "reference",
+      "cta",
+      "conversion"
+    ],
+    "license": null,
+    "policy": {
+      "metadataAllowed": true,
+      "codeIngestAllowed": false,
+      "mediaIngestAllowed": false,
+      "attributionRequired": false,
+      "notes": null
+    }
   },
   {
     "id": "404s",
@@ -306,28 +685,61 @@
     "adapter": "reference",
     "enabled": true,
     "allowCodeIngest": false,
-    "tags": ["reference", "404"],
-    "license": null
+    "tags": [
+      "reference",
+      "404"
+    ],
+    "license": null,
+    "policy": {
+      "metadataAllowed": true,
+      "codeIngestAllowed": false,
+      "mediaIngestAllowed": false,
+      "attributionRequired": false,
+      "notes": null
+    }
   },
   {
     "id": "refero-styles",
     "name": "Refero Styles",
     "url": "https://styles.refero.design",
-    "adapter": "reference",
+    "adapter": "design",
     "enabled": true,
     "allowCodeIngest": false,
-    "tags": ["styles", "designmd", "reference"],
-    "license": null
+    "tags": [
+      "styles",
+      "designmd",
+      "reference"
+    ],
+    "license": null,
+    "policy": {
+      "metadataAllowed": true,
+      "codeIngestAllowed": false,
+      "mediaIngestAllowed": false,
+      "attributionRequired": false,
+      "notes": null
+    },
+    "detailTemplate": "https://styles.refero.design/style/{id}"
   },
   {
     "id": "designmd",
     "name": "DESIGNmd",
     "url": "https://designmd.ai",
-    "adapter": "reference",
+    "adapter": "design",
     "enabled": true,
     "allowCodeIngest": false,
-    "tags": ["designmd", "styles", "agents"],
-    "license": null
+    "tags": [
+      "designmd",
+      "styles",
+      "agents"
+    ],
+    "license": null,
+    "policy": {
+      "metadataAllowed": true,
+      "codeIngestAllowed": false,
+      "mediaIngestAllowed": false,
+      "attributionRequired": false,
+      "notes": null
+    }
   },
   {
     "id": "kage",
@@ -336,8 +748,19 @@
     "adapter": "reference",
     "enabled": true,
     "allowCodeIngest": false,
-    "tags": ["reference", "prompts", "ui"],
-    "license": null
+    "tags": [
+      "reference",
+      "prompts",
+      "ui"
+    ],
+    "license": null,
+    "policy": {
+      "metadataAllowed": true,
+      "codeIngestAllowed": false,
+      "mediaIngestAllowed": false,
+      "attributionRequired": false,
+      "notes": null
+    }
   },
   {
     "id": "vibeui",
@@ -346,8 +769,19 @@
     "adapter": "reference",
     "enabled": true,
     "allowCodeIngest": false,
-    "tags": ["prompts", "layouts", "patterns"],
-    "license": null
+    "tags": [
+      "prompts",
+      "layouts",
+      "patterns"
+    ],
+    "license": null,
+    "policy": {
+      "metadataAllowed": true,
+      "codeIngestAllowed": false,
+      "mediaIngestAllowed": false,
+      "attributionRequired": false,
+      "notes": null
+    }
   },
   {
     "id": "vibeprompts",
@@ -356,8 +790,18 @@
     "adapter": "reference",
     "enabled": true,
     "allowCodeIngest": false,
-    "tags": ["prompts", "ui"],
-    "license": null
+    "tags": [
+      "prompts",
+      "ui"
+    ],
+    "license": null,
+    "policy": {
+      "metadataAllowed": true,
+      "codeIngestAllowed": false,
+      "mediaIngestAllowed": false,
+      "attributionRequired": false,
+      "notes": null
+    }
   },
   {
     "id": "scrolltide",
@@ -366,8 +810,19 @@
     "adapter": "reference",
     "enabled": true,
     "allowCodeIngest": false,
-    "tags": ["prompts", "scrollytelling", "3d"],
-    "license": null
+    "tags": [
+      "prompts",
+      "scrollytelling",
+      "3d"
+    ],
+    "license": null,
+    "policy": {
+      "metadataAllowed": true,
+      "codeIngestAllowed": false,
+      "mediaIngestAllowed": false,
+      "attributionRequired": false,
+      "notes": null
+    }
   },
   {
     "id": "backgrounds",
@@ -376,8 +831,19 @@
     "adapter": "reference",
     "enabled": true,
     "allowCodeIngest": false,
-    "tags": ["backgrounds", "media", "assets"],
-    "license": null
+    "tags": [
+      "backgrounds",
+      "media",
+      "assets"
+    ],
+    "license": null,
+    "policy": {
+      "metadataAllowed": true,
+      "codeIngestAllowed": false,
+      "mediaIngestAllowed": false,
+      "attributionRequired": false,
+      "notes": null
+    }
   },
   {
     "id": "animos",
@@ -386,8 +852,19 @@
     "adapter": "reference",
     "enabled": true,
     "allowCodeIngest": false,
-    "tags": ["motion", "video", "tool"],
-    "license": null
+    "tags": [
+      "motion",
+      "video",
+      "tool"
+    ],
+    "license": null,
+    "policy": {
+      "metadataAllowed": true,
+      "codeIngestAllowed": false,
+      "mediaIngestAllowed": false,
+      "attributionRequired": false,
+      "notes": null
+    }
   },
   {
     "id": "openmotion",
@@ -396,67 +873,598 @@
     "adapter": "reference",
     "enabled": true,
     "allowCodeIngest": false,
-    "tags": ["motion", "product-demo", "tool"],
-    "license": null
+    "tags": [
+      "motion",
+      "product-demo",
+      "tool"
+    ],
+    "license": null,
+    "policy": {
+      "metadataAllowed": true,
+      "codeIngestAllowed": false,
+      "mediaIngestAllowed": false,
+      "attributionRequired": false,
+      "notes": null
+    }
   },
   {
     "id": "iconcreator",
     "name": "IconCreator",
-    "url": "http://iconcreator.dev",
+    "url": "https://iconcreator.dev",
     "adapter": "reference",
     "enabled": true,
     "allowCodeIngest": false,
-    "tags": ["icons", "generator", "tool"],
-    "license": null
+    "tags": [
+      "icons",
+      "generator",
+      "tool"
+    ],
+    "license": null,
+    "policy": {
+      "metadataAllowed": true,
+      "codeIngestAllowed": false,
+      "mediaIngestAllowed": false,
+      "attributionRequired": false,
+      "notes": null
+    }
   },
   {
     "id": "voicestudio",
     "name": "VoiceStudio",
-    "url": "http://voicestudio.sh",
+    "url": "https://voicestudio.sh",
     "adapter": "reference",
     "enabled": true,
     "allowCodeIngest": false,
-    "tags": ["voice", "audio", "tool"],
-    "license": null
+    "tags": [
+      "voice",
+      "audio",
+      "tool"
+    ],
+    "license": null,
+    "policy": {
+      "metadataAllowed": true,
+      "codeIngestAllowed": false,
+      "mediaIngestAllowed": false,
+      "attributionRequired": false,
+      "notes": null
+    }
   },
   {
     "id": "maildev",
     "name": "MailDev",
-    "url": "http://maildev.github.io/maildev",
+    "url": "https://maildev.github.io/maildev",
     "adapter": "reference",
     "enabled": true,
     "allowCodeIngest": false,
-    "tags": ["email", "testing", "developer-tool"],
-    "license": null
+    "tags": [
+      "email",
+      "testing",
+      "developer-tool"
+    ],
+    "license": null,
+    "policy": {
+      "metadataAllowed": true,
+      "codeIngestAllowed": false,
+      "mediaIngestAllowed": false,
+      "attributionRequired": false,
+      "notes": null
+    }
   },
   {
     "id": "agent-memory",
     "name": "Agent Memory",
-    "url": "http://agent-memory.dev",
+    "url": "https://agent-memory.dev",
     "adapter": "reference",
     "enabled": true,
     "allowCodeIngest": false,
-    "tags": ["agent", "memory", "developer-tool"],
-    "license": null
+    "tags": [
+      "agent",
+      "memory",
+      "developer-tool"
+    ],
+    "license": null,
+    "policy": {
+      "metadataAllowed": true,
+      "codeIngestAllowed": false,
+      "mediaIngestAllowed": false,
+      "attributionRequired": false,
+      "notes": null
+    }
   },
   {
     "id": "vibeindex",
     "name": "VibeIndex",
     "url": "https://vibeindex.dev",
-    "adapter": "reference",
+    "adapter": "vibeindex",
     "enabled": true,
     "allowCodeIngest": false,
-    "tags": ["directory", "discovery", "developer-tools"],
-    "license": null
+    "tags": [
+      "directory",
+      "discovery",
+      "developer-tools"
+    ],
+    "license": null,
+    "policy": {
+      "metadataAllowed": true,
+      "codeIngestAllowed": false,
+      "mediaIngestAllowed": false,
+      "attributionRequired": false,
+      "notes": null
+    }
   },
   {
     "id": "openclaude",
     "name": "OpenClaude",
-    "url": "http://openclaude.gitlawb.com",
+    "url": "https://openclaude.gitlawb.com",
     "adapter": "reference",
     "enabled": true,
     "allowCodeIngest": false,
-    "tags": ["coding-agent", "cli"],
-    "license": null
+    "tags": [
+      "coding-agent",
+      "cli"
+    ],
+    "license": null,
+    "policy": {
+      "metadataAllowed": true,
+      "codeIngestAllowed": false,
+      "mediaIngestAllowed": false,
+      "attributionRequired": false,
+      "notes": null
+    }
+  },
+  {
+    "id": "base-ui",
+    "name": "Base UI",
+    "url": "https://base-ui.com",
+    "adapter": "reference",
+    "enabled": true,
+    "allowCodeIngest": false,
+    "tags": [
+      "components",
+      "headless",
+      "react",
+      "accessibility"
+    ],
+    "license": null,
+    "policy": {
+      "metadataAllowed": true,
+      "codeIngestAllowed": false,
+      "mediaIngestAllowed": false,
+      "attributionRequired": false,
+      "notes": null
+    }
+  },
+  {
+    "id": "radix-ui",
+    "name": "Radix UI",
+    "url": "https://www.radix-ui.com",
+    "adapter": "reference",
+    "enabled": true,
+    "allowCodeIngest": false,
+    "tags": [
+      "components",
+      "primitives",
+      "react",
+      "accessibility"
+    ],
+    "license": null,
+    "policy": {
+      "metadataAllowed": true,
+      "codeIngestAllowed": false,
+      "mediaIngestAllowed": false,
+      "attributionRequired": false,
+      "notes": null
+    }
+  },
+  {
+    "id": "react-aria",
+    "name": "React Aria Components",
+    "url": "https://react-spectrum.adobe.com/react-aria",
+    "adapter": "reference",
+    "enabled": true,
+    "allowCodeIngest": false,
+    "tags": [
+      "components",
+      "react",
+      "accessibility",
+      "i18n"
+    ],
+    "license": null,
+    "policy": {
+      "metadataAllowed": true,
+      "codeIngestAllowed": false,
+      "mediaIngestAllowed": false,
+      "attributionRequired": false,
+      "notes": null
+    }
+  },
+  {
+    "id": "headless-ui",
+    "name": "Headless UI",
+    "url": "https://headlessui.com",
+    "adapter": "reference",
+    "enabled": true,
+    "allowCodeIngest": false,
+    "tags": [
+      "components",
+      "headless",
+      "react",
+      "vue"
+    ],
+    "license": null,
+    "policy": {
+      "metadataAllowed": true,
+      "codeIngestAllowed": false,
+      "mediaIngestAllowed": false,
+      "attributionRequired": false,
+      "notes": null
+    }
+  },
+  {
+    "id": "daisyui",
+    "name": "daisyUI",
+    "url": "https://daisyui.com",
+    "adapter": "reference",
+    "enabled": true,
+    "allowCodeIngest": false,
+    "tags": [
+      "tailwind",
+      "components",
+      "themes",
+      "css"
+    ],
+    "license": null,
+    "policy": {
+      "metadataAllowed": true,
+      "codeIngestAllowed": false,
+      "mediaIngestAllowed": false,
+      "attributionRequired": false,
+      "notes": null
+    }
+  },
+  {
+    "id": "flowbite",
+    "name": "Flowbite",
+    "url": "https://flowbite.com",
+    "adapter": "reference",
+    "enabled": true,
+    "allowCodeIngest": false,
+    "tags": [
+      "tailwind",
+      "components",
+      "blocks"
+    ],
+    "license": null,
+    "policy": {
+      "metadataAllowed": true,
+      "codeIngestAllowed": false,
+      "mediaIngestAllowed": false,
+      "attributionRequired": false,
+      "notes": null
+    }
+  },
+  {
+    "id": "preline",
+    "name": "Preline UI",
+    "url": "https://preline.co",
+    "adapter": "reference",
+    "enabled": true,
+    "allowCodeIngest": false,
+    "tags": [
+      "tailwind",
+      "components",
+      "html"
+    ],
+    "license": null,
+    "policy": {
+      "metadataAllowed": true,
+      "codeIngestAllowed": false,
+      "mediaIngestAllowed": false,
+      "attributionRequired": false,
+      "notes": null
+    }
+  },
+  {
+    "id": "heroui",
+    "name": "HeroUI",
+    "url": "https://www.heroui.com",
+    "adapter": "reference",
+    "enabled": true,
+    "allowCodeIngest": false,
+    "tags": [
+      "components",
+      "react",
+      "application-ui"
+    ],
+    "license": null,
+    "policy": {
+      "metadataAllowed": true,
+      "codeIngestAllowed": false,
+      "mediaIngestAllowed": false,
+      "attributionRequired": false,
+      "notes": null
+    }
+  },
+  {
+    "id": "hyperui",
+    "name": "HyperUI",
+    "url": "https://www.hyperui.dev",
+    "adapter": "reference",
+    "enabled": true,
+    "allowCodeIngest": false,
+    "tags": [
+      "tailwind",
+      "components",
+      "blocks"
+    ],
+    "license": null,
+    "policy": {
+      "metadataAllowed": true,
+      "codeIngestAllowed": false,
+      "mediaIngestAllowed": false,
+      "attributionRequired": false,
+      "notes": null
+    }
+  },
+  {
+    "id": "lucide",
+    "name": "Lucide",
+    "url": "https://lucide.dev",
+    "adapter": "reference",
+    "enabled": true,
+    "allowCodeIngest": false,
+    "tags": [
+      "icons",
+      "svg",
+      "react"
+    ],
+    "license": null,
+    "policy": {
+      "metadataAllowed": true,
+      "codeIngestAllowed": false,
+      "mediaIngestAllowed": false,
+      "attributionRequired": false,
+      "notes": null
+    },
+    "kind": "capability"
+  },
+  {
+    "id": "iconify",
+    "name": "Iconify",
+    "url": "https://iconify.design",
+    "adapter": "reference",
+    "enabled": true,
+    "allowCodeIngest": false,
+    "tags": [
+      "icons",
+      "svg",
+      "aggregator"
+    ],
+    "license": null,
+    "policy": {
+      "metadataAllowed": true,
+      "codeIngestAllowed": false,
+      "mediaIngestAllowed": false,
+      "attributionRequired": false,
+      "notes": null
+    },
+    "kind": "capability"
+  },
+  {
+    "id": "heroicons",
+    "name": "Heroicons",
+    "url": "https://heroicons.com",
+    "adapter": "reference",
+    "enabled": true,
+    "allowCodeIngest": false,
+    "tags": [
+      "icons",
+      "svg"
+    ],
+    "license": null,
+    "policy": {
+      "metadataAllowed": true,
+      "codeIngestAllowed": false,
+      "mediaIngestAllowed": false,
+      "attributionRequired": false,
+      "notes": null
+    },
+    "kind": "capability"
+  },
+  {
+    "id": "tabler-icons",
+    "name": "Tabler Icons",
+    "url": "https://tabler.io/icons",
+    "adapter": "reference",
+    "enabled": true,
+    "allowCodeIngest": false,
+    "tags": [
+      "icons",
+      "svg"
+    ],
+    "license": null,
+    "policy": {
+      "metadataAllowed": true,
+      "codeIngestAllowed": false,
+      "mediaIngestAllowed": false,
+      "attributionRequired": false,
+      "notes": null
+    },
+    "kind": "capability"
+  },
+  {
+    "id": "phosphor-icons",
+    "name": "Phosphor Icons",
+    "url": "https://phosphoricons.com",
+    "adapter": "reference",
+    "enabled": true,
+    "allowCodeIngest": false,
+    "tags": [
+      "icons",
+      "svg"
+    ],
+    "license": null,
+    "policy": {
+      "metadataAllowed": true,
+      "codeIngestAllowed": false,
+      "mediaIngestAllowed": false,
+      "attributionRequired": false,
+      "notes": null
+    },
+    "kind": "capability"
+  },
+  {
+    "id": "fontsource",
+    "name": "Fontsource",
+    "url": "https://fontsource.org",
+    "adapter": "reference",
+    "enabled": true,
+    "allowCodeIngest": false,
+    "tags": [
+      "fonts",
+      "npm",
+      "typography"
+    ],
+    "license": null,
+    "policy": {
+      "metadataAllowed": true,
+      "codeIngestAllowed": false,
+      "mediaIngestAllowed": false,
+      "attributionRequired": false,
+      "notes": null
+    },
+    "kind": "capability"
+  },
+  {
+    "id": "react-three-fiber",
+    "name": "React Three Fiber",
+    "url": "https://r3f.docs.pmnd.rs",
+    "adapter": "reference",
+    "enabled": true,
+    "allowCodeIngest": false,
+    "tags": [
+      "3d",
+      "webgl",
+      "react"
+    ],
+    "license": null,
+    "policy": {
+      "metadataAllowed": true,
+      "codeIngestAllowed": false,
+      "mediaIngestAllowed": false,
+      "attributionRequired": false,
+      "notes": null
+    },
+    "kind": "capability"
+  },
+  {
+    "id": "drei",
+    "name": "Drei",
+    "url": "https://drei.docs.pmnd.rs",
+    "adapter": "reference",
+    "enabled": true,
+    "allowCodeIngest": false,
+    "tags": [
+      "3d",
+      "webgl",
+      "react",
+      "helpers"
+    ],
+    "license": null,
+    "policy": {
+      "metadataAllowed": true,
+      "codeIngestAllowed": false,
+      "mediaIngestAllowed": false,
+      "attributionRequired": false,
+      "notes": null
+    },
+    "kind": "capability"
+  },
+  {
+    "id": "recharts",
+    "name": "Recharts",
+    "url": "https://recharts.org",
+    "adapter": "reference",
+    "enabled": true,
+    "allowCodeIngest": false,
+    "tags": [
+      "charts",
+      "react",
+      "visualization"
+    ],
+    "license": null,
+    "policy": {
+      "metadataAllowed": true,
+      "codeIngestAllowed": false,
+      "mediaIngestAllowed": false,
+      "attributionRequired": false,
+      "notes": null
+    },
+    "kind": "capability"
+  },
+  {
+    "id": "echarts",
+    "name": "Apache ECharts",
+    "url": "https://echarts.apache.org",
+    "adapter": "reference",
+    "enabled": true,
+    "allowCodeIngest": false,
+    "tags": [
+      "charts",
+      "visualization"
+    ],
+    "license": null,
+    "policy": {
+      "metadataAllowed": true,
+      "codeIngestAllowed": false,
+      "mediaIngestAllowed": false,
+      "attributionRequired": false,
+      "notes": null
+    },
+    "kind": "capability"
+  },
+  {
+    "id": "visx",
+    "name": "Visx",
+    "url": "https://airbnb.io/visx",
+    "adapter": "reference",
+    "enabled": true,
+    "allowCodeIngest": false,
+    "tags": [
+      "charts",
+      "react",
+      "visualization"
+    ],
+    "license": null,
+    "policy": {
+      "metadataAllowed": true,
+      "codeIngestAllowed": false,
+      "mediaIngestAllowed": false,
+      "attributionRequired": false,
+      "notes": null
+    },
+    "kind": "capability"
+  },
+  {
+    "id": "tanstack-table",
+    "name": "TanStack Table",
+    "url": "https://tanstack.com/table",
+    "adapter": "reference",
+    "enabled": true,
+    "allowCodeIngest": false,
+    "tags": [
+      "table",
+      "data-grid",
+      "react"
+    ],
+    "license": null,
+    "policy": {
+      "metadataAllowed": true,
+      "codeIngestAllowed": false,
+      "mediaIngestAllowed": false,
+      "attributionRequired": false,
+      "notes": null
+    },
+    "kind": "capability"
   }
 ]

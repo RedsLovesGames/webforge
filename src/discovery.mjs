@@ -1,0 +1,13 @@
+import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import path from 'node:path';
+import { listSources, addSource } from './core.mjs';
+import { resolveAdapter } from './adapters/index.mjs';
+import { createProviderContext } from './provider-context.mjs';
+const file=root=>path.join(path.resolve(root),'.webforge','discovery.json');
+async function read(root){try{return JSON.parse(await readFile(file(root),'utf8'));}catch(e){if(e.code==='ENOENT')return [];throw e;}}
+async function save(root,v){await mkdir(path.dirname(file(root)),{recursive:true});await writeFile(file(root),JSON.stringify(v,null,2)+'\n');}
+function normUrl(u){const x=new URL(u);x.hash='';x.search='';return x.toString().replace(/\/$/,'');}
+async function resolveItems(root,options){if(Array.isArray(options.items)&&options.items.length)return options.items;const sourceId=options.source||'vibeindex',source=(await listSources(root)).find(x=>x.id===sourceId);if(!source)return [];const context=createProviderContext(root,options.context||{}),adapter=await resolveAdapter(source,context),records=await adapter.sync(source,context);return records.map(r=>({id:r.name||String(r.id).split('/').pop(),name:r.title||r.name,url:r.design?.referenceUrl||r.meta?.url||r.source?.url,tags:r.tags||[]})).filter(x=>x.url&&x.url!==source.url);}
+export async function discoverSources(root=process.cwd(),options={}){const current=await read(root),sources=await listSources(root),known=new Set(sources.map(x=>normUrl(x.url))),byId=new Map(current.map(x=>[x.id,x])),incoming=await resolveItems(root,options);for(const raw of incoming){const id=raw.id||new URL(raw.url).hostname.replace(/^www\./,'').replace(/[^a-z0-9]+/gi,'-').toLowerCase(),url=normUrl(raw.url);if(byId.has(id))continue;const status=known.has(url)?'duplicate':'candidate';const item={id,name:raw.name||id,url,tags:raw.tags||[],status,discoveredFrom:options.source||'manual'};current.push(item);byId.set(id,item);}await save(root,current);return current;}
+export async function listDiscovery(root=process.cwd()){return read(root);}
+export async function approveDiscovery(root=process.cwd(),id){const items=await read(root),item=items.find(x=>x.id===id);if(!item)throw new Error(`candidate not found: ${id}`);if(item.status==='duplicate')return item;if(item.status==='rejected')throw new Error(`candidate rejected: ${id}`);if(item.status!=='approved'){await addSource(root,{id:item.id,name:item.name,url:item.url,adapter:'auto',allowCodeIngest:false,tags:item.tags,license:null,policy:{metadataAllowed:true,codeIngestAllowed:false,mediaIngestAllowed:false,attributionRequired:false,notes:'Discovered source; trust not elevated automatically.'}});item.status='approved';await save(root,items);}return item;}

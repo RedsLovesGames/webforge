@@ -1,0 +1,7 @@
+import { searchAssets, getAsset, listSources } from './core.mjs';
+import { resolveAdapter } from './adapters/index.mjs';
+import { createProviderContext } from './provider-context.mjs';
+function compact(item){return {id:item.id,title:item.title,description:item.description,type:item.type,source:item.source?.id,tags:item.tags||[],categories:item.categories||[],theme:item.design?.theme||null,referenceUrl:item.design?.referenceUrl||null};}
+export function designSearch(root,query,options={}){return searchAssets(root,query,{...options,type:'design',limit:options.limit||5}).map(compact);}
+export function designGet(root,id){const item=getAsset(root,id);return item?.type==='design'?item:null;}
+export async function getDesign(root,id,options={}){const local=designGet(root,id);if(!local)return null;if(local.design?.designMd||!local.retrieval?.remoteGet)return local;const source=(await listSources(root)).find(x=>x.id===local.source?.id);if(!source)return local;const context=createProviderContext(root,options.context||{}),adapter=await resolveAdapter(source,context);if(typeof adapter.get!=='function')return local;try{const remote=await adapter.get(source,id,context);return {...local,...remote,design:{...(local.design||{}),...(remote.design||{})}};}catch(e){if(options.strict)throw e;return {...local,retrieval:{...(local.retrieval||{}),remoteError:{code:e.code||'unavailable',message:e.message}}};}}
