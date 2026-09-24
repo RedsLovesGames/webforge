@@ -18,18 +18,31 @@ async function resolveExecutableImpl(executable){
 }
 async function commandExistsImpl(executable){return Boolean(await resolveExecutableImpl(executable));}
 
+export function prepareSpawnTarget(resolved,args=[],options={}){
+  const platform=options.platform||process.platform,nodeExec=options.nodeExec||process.execPath;
+  if(platform!=='win32'||!/\.(?:cmd|bat)$/i.test(resolved)) return {executable:resolved,args};
+  const base=path.win32.basename(resolved).toLowerCase();
+  if(base==='npm.cmd'||base==='npx.cmd'){
+    const cli=base==='npm.cmd'?'npm-cli.js':'npx-cli.js';
+    return {executable:nodeExec,args:[path.win32.join(path.win32.dirname(resolved),'node_modules','npm','bin',cli),...args]};
+  }
+  const e=new Error(`unsupported Windows command script without safe launcher: ${resolved}`);e.code='unsupported';throw e;
+}
+
 async function spawnCommandImpl(executable,args=[],options={}){
   const resolved=await resolveExecutableImpl(executable); if(!resolved){const e=new Error(`executable not found: ${executable}`);e.code='unavailable';throw e;}
+  const target=prepareSpawnTarget(resolved,args);
   return await new Promise((resolve,reject)=>{
-    const child=spawn(resolved,args,{cwd:options.cwd,env:options.env||process.env,stdio:options.stdio||'inherit',shell:false});
+    const child=spawn(target.executable,target.args,{cwd:options.cwd,env:options.env||process.env,stdio:options.stdio||'inherit',shell:false});
     child.once('error',err=>{err.code=err.code==='ENOENT'?'unavailable':err.code; reject(err);}); child.once('close',status=>resolve({status}));
   });
 }
 
 async function spawnCaptureImpl(executable,args=[],options={}){
   const resolved=await resolveExecutableImpl(executable); if(!resolved){const e=new Error(`executable not found: ${executable}`);e.code='unavailable';throw e;}
+  const target=prepareSpawnTarget(resolved,args);
   return await new Promise((resolve,reject)=>{
-    const child=spawn(resolved,args,{cwd:options.cwd,env:options.env||process.env,stdio:['ignore','pipe','pipe'],shell:false});
+    const child=spawn(target.executable,target.args,{cwd:options.cwd,env:options.env||process.env,stdio:['ignore','pipe','pipe'],shell:false});
     let stdout='',stderr=''; child.stdout.setEncoding('utf8'); child.stderr.setEncoding('utf8'); child.stdout.on('data',c=>stdout+=c); child.stderr.on('data',c=>stderr+=c);
     child.once('error',err=>{err.code=err.code==='ENOENT'?'unavailable':err.code; reject(err);}); child.once('close',status=>resolve({status,stdout,stderr}));
   });
