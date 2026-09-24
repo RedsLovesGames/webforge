@@ -26,6 +26,7 @@ test('builds tiny routing index and category shards without source-code bodies',
   assert.equal(result.sources, 2);
   assert.equal(result.assets, 2);
   assert.equal(result.shards.motion, 1);
+  assert.equal(result.shards.components, 1);
   assert.equal(result.shards.design, 1);
 
   const indexText = await readFile(path.join(root, 'chatgpt', 'INDEX.min.json'), 'utf8');
