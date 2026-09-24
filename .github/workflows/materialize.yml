@@ -25,6 +25,7 @@ jobs:
           base64 -d /tmp/webforge.b64 > /tmp/webforge.tar.gz
           echo "108ca562b7af3ec90246383789be1e402512fa3ff140f2ab337e8cbd35bca06a  /tmp/webforge.tar.gz" | sha256sum -c -
           tar -xzf /tmp/webforge.tar.gz
+          git checkout HEAD -- .github/workflows/ci.yml
           rm -rf _upload
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
