@@ -8,22 +8,24 @@ const uniq = values => [...new Set((Array.isArray(values) ? values : []).map(Str
 const cleanText = (value, max = 180) => String(value || '').replace(/\s+/g, ' ').trim().slice(0, max);
 const posix = value => value.split(path.sep).join('/');
 
-function routeCategory(item = {}) {
+function routeCategories(item = {}) {
   const hay = new Set([
     String(item.type || '').toLowerCase(),
     ...uniq(item.tags).map(x => x.toLowerCase()),
     ...uniq(item.categories).map(x => x.toLowerCase()),
   ]);
   const has = (...terms) => terms.some(term => hay.has(term));
-  if (has('motion','animation','transitions','microinteractions','scrollytelling')) return 'motion';
-  if (has('icon','icons','svg')) return 'icons';
-  if (has('font','fonts','typography')) return 'fonts';
-  if (has('3d','webgl')) return '3d';
-  if (has('chart','charts','visualization','table','data-grid','maps')) return 'data';
-  if (has('design','reference','styles','designmd','presentations','website','websites','minimal')) return 'design';
-  if (has('developer-tool','developer-tools','tool','coding-agent','cli','email','voice','audio','generator','memory')) return 'tools';
-  if (has('component','components','block','blocks','react','tailwind','shadcn','ui','primitives','headless','application-ui')) return 'components';
-  return 'other';
+  const routes = new Set();
+  if (has('motion','animation','transitions','microinteractions','scrollytelling')) routes.add('motion');
+  if (has('icon','icons','svg')) routes.add('icons');
+  if (has('font','fonts','typography')) routes.add('fonts');
+  if (has('3d','webgl')) routes.add('3d');
+  if (has('chart','charts','visualization','table','data-grid','maps')) routes.add('data');
+  if (has('design','reference','styles','designmd','presentations','website','websites','minimal')) routes.add('design');
+  if (has('developer-tool','developer-tools','tool','coding-agent','cli','email','voice','audio','generator','memory')) routes.add('tools');
+  if (has('component','components','block','blocks','react','tailwind','shadcn','ui','primitives','headless','application-ui')) routes.add('components');
+  if (!routes.size) routes.add('other');
+  return [...routes];
 }
 
 async function walkJsonl(dir) {
@@ -101,7 +103,7 @@ export async function buildChatGPTIndex(root = process.cwd()) {
   const shards = Object.fromEntries(CATEGORIES.map(name => [name, []]));
   for (const row of rows) {
     const compact = compactAsset(row.item, row.detail);
-    shards[routeCategory(row.item)].push(compact);
+    for (const category of routeCategories(row.item)) shards[category].push(compact);
   }
   for (const items of Object.values(shards)) items.sort((a, b) => a.i.localeCompare(b.i));
 
